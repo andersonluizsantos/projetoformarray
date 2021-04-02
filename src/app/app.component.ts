@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -10,16 +10,25 @@ export class AppComponent {
   title = 'formarrayexamples';
 
   formUserData: FormGroup;  //declaring our form variable
+  skills = new FormArray([]);
 
-  constructor(private formBuilder : FormBuilder ){}
+  constructor(private formBuilder: FormBuilder) { }
 
-  ngOnInit(){
+  ngOnInit() {
     this.formUserData = this.formBuilder.group({
-    firstName:[],
-    lastName:[],
-    email:[],
-    phone:[]
+      firstName: [],
+      lastName: [],
+      email: [],
+      phone: []
     })
-   }
+  }
+
+  addSkill() {
+    this.skills.push(new FormControl(''));
+  }
+
+  removeSkill(index: number) {
+    this.skills.removeAt(index);
+  } 
 
 }
